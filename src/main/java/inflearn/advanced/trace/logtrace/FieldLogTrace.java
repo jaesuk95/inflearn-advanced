@@ -18,7 +18,8 @@ public class FieldLogTrace implements LogTrace {
         syncTraceId();      // creates a new transaction id or pushes to next level
         TraceId traceId = traceIdHolder;
         Long startTimeMs = System.currentTimeMillis();
-        log.info("[{}] {}{}",traceId.getId(),addSpace(START_PREFIX,traceId.getLevel()),message);
+        log.info("[{}] {}{}",traceId.getId(),
+                addSpace(START_PREFIX,traceId.getLevel()),message);
         return new TraceStatus(traceId,startTimeMs,message);
     }
 

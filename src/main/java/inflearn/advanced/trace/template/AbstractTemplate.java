@@ -16,6 +16,12 @@ public abstract class AbstractTemplate<T> { // T = 반환 타입 (어떤 것은 
         TraceStatus status = null;
         try {
             status = trace.begin(message);  // 로그에 출력할 메시지 --> , 외부에서 파라미터로 전달 받는다
+
+
+            /**
+             * 만약 로그를 변경하고자 할때 여기서 변경하면 된다
+             * */
+
             // 로직 호출
             T result = call();
             trace.end(status);

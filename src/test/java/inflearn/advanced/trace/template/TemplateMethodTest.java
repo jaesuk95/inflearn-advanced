@@ -1,5 +1,8 @@
 package inflearn.advanced.trace.template;
 
+import inflearn.advanced.trace.strategy.code.strategy.ContextV1;
+import inflearn.advanced.trace.strategy.code.strategy.StrategyLogic1;
+import inflearn.advanced.trace.strategy.code.strategy.StrategyLogic2;
 import inflearn.advanced.trace.template.code.AbstractTemplate;
 import inflearn.advanced.trace.template.code.SubClassLogic1;
 import inflearn.advanced.trace.template.code.SubClassLogic2;
@@ -34,35 +37,19 @@ public class TemplateMethodTest {
     }
 
     /**
-     * 템플릿 메서드 패턴 적용
-     * */
-    @Test
-    void templateMethodV1(){
-        AbstractTemplate template1 = new SubClassLogic1();
-        template1.execute();
-
-        AbstractTemplate template2 = new SubClassLogic2();
-        template2.execute();
-    }
+     * 전략 패턴 사용
+     */
 
     @Test
-    void templateMethodV2(){
-        AbstractTemplate template = new AbstractTemplate() {
-            @Override
-            protected void call() {
-                log.info("비즈니스 로직 1 실행 ");
-            }
-        };
-        log.info("클래스 이름1={}",template.getClass());
-        template.execute();
+    void strategyV1(){
+        StrategyLogic1 strategyLogic1 = new StrategyLogic1();
+        ContextV1 contextV1 = new ContextV1(strategyLogic1);
+        contextV1.execute();
 
-        AbstractTemplate template2 = new AbstractTemplate() {
-            @Override
-            protected void call() {
-                log.info("비즈니스 로직 1 실행 ");
-            }
-        };
-        log.info("클래스 이름2={}",template2.getClass());
-        template2.execute();
+        StrategyLogic2 strategyLogic2 = new StrategyLogic2();
+        ContextV1 contextV2 = new ContextV1(strategyLogic2);
+        contextV2.execute();
     }
+
+
 }

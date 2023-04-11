@@ -12,6 +12,6 @@ public class TraceAspect {
     @Before("@annotation(inflearn.advanced.aop.exam.annotation.Trace)")
     public void doTrace(JoinPoint joinpoint) {
         Object[] args = joinpoint.getArgs();
-        log.info("[trace] {} args = {}", joinpoint.getSignature(), args);
+        log.info("[Custom Trace] {} args = {}", joinpoint.getSignature(), args);
     }
 }
